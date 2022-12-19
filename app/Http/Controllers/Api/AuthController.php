@@ -20,7 +20,7 @@ class AuthController extends Controller
         unset($credentials['remember']);
         if (!Auth::attempt($credentials, $remember)) {
             return response([
-                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
+                'message' => 'Email or password is incorrect'
             ], 422);
         }
 
@@ -29,13 +29,13 @@ class AuthController extends Controller
         if (!$user->is_admin) {
             Auth::logout();
             return response([
-                'message' => 'Bạn không có quyền để thực hiện hành động này'
+                'message' => 'You don\'t have permission to authenticate as admin'
             ], 403);
         }
         if (!$user->email_verified_at) {
             Auth::logout();
             return response([
-                'message' => 'Email của bạn chưa được xác thực'
+                'message' => 'Your email hasn\'t been verified'
             ], 403);
         }
         $token = $user->createToken('main')->plainTextToken;

@@ -35,9 +35,9 @@
                                 name="email"
                                 id="email"
                                 v-model="user.email"
-                                class="block w-full h-10 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full h-10 px-4 border border-gray-300 text-gray-900 rounded-md focus:outline focus:outline-[1.5px] focus:ring-blue-500 focus:outline-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required=""
-                                placeholder="Email của bạn"
+                                placeholder="Enter your email address"
                             />
                         </div>
                         <div class="relative z-0 w-full group">
@@ -45,7 +45,7 @@
                                 for="password"
                                 class="invisible relative px-1 group-focus-within:visible group-focus-within:top-2 group-focus-within:bg-white group-focus-within group-focus-within:text-blue-600 top-8 left-3 w-auto"
                             >
-                                Mật khẩu
+                                Password
                             </label>
                             <input
                                 type="password"
@@ -53,9 +53,9 @@
                                 name="password"
                                 id="password"
                                 v-model="user.password"
-                                class="block w-full h-10 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full h-10 px-4 border border-gray-300 text-gray-900 rounded-md focus:outline focus:outline-[1.5px] focus:ring-blue-500 focus:outline-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required=""
-                                placeholder="Mật khẩu"
+                                placeholder="Enter your password"
                             />
                             <span
                                 id="eye-icon"
@@ -76,14 +76,14 @@
                                 type="checkbox"
                                 class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                             />
-                            <label for="remember-me" class="ml-2 block text-md text-gray-900">Lưu thông tin</label>
+                            <label for="remember-me" class="ml-2 block text-md text-gray-900">Remember me</label>
                         </div>
 
                         <div class="text-md">
                             <router-link
                                 :to="{ name: 'requestPassword' }"
                                 class="font-medium text-blue-600 hover:text-blue-500"
-                                >Quên mật khẩu
+                                >Forgot password?
                             </router-link>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            Đăng nhập
+                            Login
                         </button>
                     </div>
 

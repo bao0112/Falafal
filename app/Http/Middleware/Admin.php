@@ -21,7 +21,7 @@ class Admin
             return $next($request);
         }
         return response([
-            'message' => 'Bạn không có quyền để thực hiện hành động này'
+            'message' => 'You don\'t have permission to authenticate as admin'
         ], 403);
     }
 }
