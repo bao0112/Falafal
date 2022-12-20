@@ -1,9 +1,4 @@
 <?php
-/**
- * User: Zura
- * Date: 8/16/2022
- * Time: 5:26 AM
- */
 
 namespace App\Helpers;
 
@@ -12,12 +7,6 @@ use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Support\Arr;
 
-/**
- * Class Cart
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package App\Helpers
- */
 class Cart
 {
     public static function getCartItemsCount(): int
@@ -87,11 +76,6 @@ class Cart
         }
     }
 
-    /**
-     *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
-     */
     public static function getProductsAndCartItems(): array|\Illuminate\Database\Eloquent\Collection
     {
         $cartItems = self::getCartItems();

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminUserSeeder extends Seeder
@@ -16,8 +17,8 @@ class AdminUserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@mail.com',
-            'password' => bcrypt('admin123456'),
+            'email' => 'admin@example.com',
+            'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
             'is_admin' => true
         ]);
