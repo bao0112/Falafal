@@ -7,25 +7,19 @@
         </h2>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')"/>
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <p class="text-center text-gray-500 mb-6">
             or
-            <a
-                href="{{ route('login') }}"
-                class="text-purple-600 hover:text-purple-500"
-            >
+            <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-500">
                 login with existing account
             </a>
         </p>
 
         <div class="mb-3">
-            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                     autofocus placeholder="Enter your Email Address"/>
+            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="Enter your Email Address" />
         </div>
-        <button
-            class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"
-        >
+        <button class="btn-primary bg-blue-500 hover:bg-blue-600 active:bg-blue-700 w-full">
             Email Password Reset Link
         </button>
     </form>

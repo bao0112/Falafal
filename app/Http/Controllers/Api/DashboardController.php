@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    use ReportTrait;
-
     public function activeCustomers()
     {
         return Customer::where('status', CustomerStatus::Active->value)->count();
@@ -62,8 +60,7 @@ class DashboardController extends Controller
             ->join('countries AS c', 'a.country_code', '=', 'c.code')
             ->where('status', OrderStatus::Paid->value)
             ->where('a.type', AddressType::Billing->value)
-            ->groupBy('c.name')
-            ;
+            ->groupBy('c.name');
 
         if ($fromDate) {
             $query->where('orders.created_at', '>', $fromDate);
@@ -87,8 +84,10 @@ class DashboardController extends Controller
     {
         return OrderResource::collection(
             Order::query()
-                ->select(['o.id', 'o.total_price', 'o.created_at', DB::raw('COUNT(oi.id) AS items'),
-                    'c.user_id', 'c.first_name', 'c.last_name'])
+                ->select([
+                    'o.id', 'o.total_price', 'o.created_at', DB::raw('COUNT(oi.id) AS items'),
+                    'c.user_id', 'c.first_name', 'c.last_name'
+                ])
                 ->from('orders AS o')
                 ->join('order_items AS oi', 'oi.order_id', '=', 'o.id')
                 ->join('customers AS c', 'c.user_id', '=', 'o.created_by')

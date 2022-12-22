@@ -37,7 +37,7 @@ class CheckoutController extends Controller
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $product->title,
-//                        'images' => [$product->image]
+                        //                        'images' => [$product->image]
                     ],
                     'unit_amount' => $product->price * 100,
                 ],
@@ -49,15 +49,15 @@ class CheckoutController extends Controller
                 'unit_price' => $product->price
             ];
         }
-//        dd(route('checkout.failure', [], true));
+        //        dd(route('checkout.failure', [], true));
 
-//        dd(route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}');
+        //        dd(route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}');
 
         $session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.failure', [], true),
+            'cancel_url' => route('order.index', [], true),
         ]);
 
         // Create Order
@@ -102,7 +102,7 @@ class CheckoutController extends Controller
             $session_id = $request->get('session_id');
             $session = \Stripe\Checkout\Session::retrieve($session_id);
             if (!$session) {
-                return view('checkout.failure', ['message' => 'Invalid Session ID']);
+                return redirect(route('order.index'));
             }
 
             $payment = Payment::query()
@@ -120,13 +120,13 @@ class CheckoutController extends Controller
         } catch (NotFoundHttpException $e) {
             throw $e;
         } catch (\Exception $e) {
-            return view('checkout.failure', ['message' => $e->getMessage()]);
+            return redirect(route('order.index'));
         }
     }
 
     public function failure(Request $request)
     {
-        return view('checkout.failure', ['message' => ""]);
+        return redirect(route('order.index'));
     }
 
     public function checkoutOrder(Order $order, Request $request)
@@ -140,7 +140,7 @@ class CheckoutController extends Controller
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $item->product->title,
-//                        'images' => [$product->image]
+                        //                        'images' => [$product->image]
                     ],
                     'unit_amount' => $item->unit_price * 100,
                 ],
@@ -152,7 +152,7 @@ class CheckoutController extends Controller
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.failure', [], true),
+            'cancel_url' => route('order.index', [], true),
         ]);
 
         $order->payment->session_id = $session->id;
@@ -174,7 +174,9 @@ class CheckoutController extends Controller
 
         try {
             $event = \Stripe\Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
+                $payload,
+                $sig_header,
+                $endpoint_secret
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
@@ -196,7 +198,7 @@ class CheckoutController extends Controller
                 if ($payment) {
                     $this->updateOrderAndSession($payment);
                 }
-            // ... handle other event types
+                // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }

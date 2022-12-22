@@ -3,7 +3,7 @@
         <div class="flex justify-between border-b-2 pb-3">
             <div class="flex items-center">
                 <select
-                    @change="getProducts(null)"
+                    @change="getUsers(null)"
                     v-model="perPage"
                     class="appearance-none relative block w-[48px] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 >
@@ -16,7 +16,7 @@
                 <span class="whitespace-nowrap ml-3">/ Page</span>
             </div>
             <div class="flex items-center">
-                <span>Found {{ products.total }} products</span>
+                <span>Found {{ users.total }} users</span>
             </div>
         </div>
 
@@ -27,62 +27,56 @@
                         field="id"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
-                        @click="sortProducts('id')"
+                        @click="sortUsers('id')"
                     >
                         ID
                     </TableHeaderCell>
-                    <TableHeaderCell field="image" :sort-field="sortField" :sort-direction="sortDirection">
-                        Image
-                    </TableHeaderCell>
                     <TableHeaderCell
-                        field="title"
+                        field="name"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
-                        @click="sortProducts('title')"
+                        @click="sortUsers('name')"
                     >
-                        Title
+                        Name
                     </TableHeaderCell>
                     <TableHeaderCell
-                        field="price"
+                        field="email"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
-                        @click="sortProducts('price')"
+                        @click="sortUsers('email')"
                     >
-                        Price
+                        Email
                     </TableHeaderCell>
                     <TableHeaderCell
-                        field="updated_at"
+                        field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
-                        @click="sortProducts('updated_at')"
+                        @click="sortUsers('created_at')"
                     >
-                        Last Updated At
+                        Create Date
                     </TableHeaderCell>
                     <TableHeaderCell field="actions"> Actions </TableHeaderCell>
                 </tr>
             </thead>
-            <tbody v-if="products.loading || !products.data.length">
+            <tbody v-if="users.loading || !users.data.length">
                 <tr>
                     <td colspan="6">
-                        <Spinner v-if="products.loading" />
-                        <p v-else class="text-center py-8 text-gray-700">No product found</p>
+                        <Spinner v-if="users.loading" />
+                        <p v-else class="text-center py-8 text-gray-700">There are no users</p>
                     </td>
                 </tr>
             </tbody>
             <tbody v-else>
-                <tr v-for="(product, index) of products.data">
-                    <td class="border-b p-2">{{ product.id }}</td>
+                <tr v-for="(user, index) of users.data">
+                    <td class="border-b p-2">{{ user.id }}</td>
                     <td class="border-b p-2">
-                        <img class="w-16 h-16 object-cover" :src="product.image_url" :alt="product.title" />
+                        {{ user.name }}
                     </td>
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
-                        {{ product.title }}
+                        {{ user.email }}
                     </td>
                     <td class="border-b p-2">
-                        {{ product.price }}
-                    </td>
-                    <td class="border-b p-2">
-                        {{ product.updated_at }}
+                        {{ user.created_at }}
                     </td>
                     <td class="border-b p-2">
                         <Menu as="div" class="relative inline-block text-left">
@@ -114,7 +108,7 @@
                                                     active ? 'bg-blue-600 text-white' : 'text-gray-900',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
-                                                @click="editProduct(product)"
+                                                @click="editUser(user)"
                                             >
                                                 <span :active="active" class="mr-[12px]">
                                                     <i class="fa-solid fa-pen-to-square"></i>
@@ -128,9 +122,9 @@
                                                     active ? 'bg-blue-600 text-white' : 'text-gray-900',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
-                                                @click="deleteProduct(product)"
+                                                @click="deleteUser(user)"
                                             >
-                                                <span class="mr-[12px]">
+                                                <span :active="active" class="mr-[12px]">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </span>
                                                 Delete
@@ -145,16 +139,15 @@
             </tbody>
         </table>
 
-        <div v-if="!products.loading" class="flex justify-between items-center mt-5">
-            <div v-if="products.data.length">Showing from {{ products.from }} to {{ products.to }}</div>
+        <div v-if="!users.loading" class="flex justify-between items-center mt-5">
+            <div v-if="users.data.length">Showing from {{ users.from }} to {{ users.to }}</div>
             <nav
-                v-if="products.total > products.limit"
+                v-if="users.total > users.limit"
                 class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
                 aria-label="Pagination"
             >
-                <!-- Current: "z-10 bg-blue-50 border-blue-500 text-blue-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
                 <a
-                    v-for="(link, i) of products.links"
+                    v-for="(link, i) of users.links"
                     :key="i"
                     :disabled="!link.url"
                     href="#"
@@ -166,7 +159,7 @@
                             ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
                             : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
                         i === 0 ? 'rounded-l-md' : '',
-                        i === products.links.length - 1 ? 'rounded-r-md' : '',
+                        i === users.links.length - 1 ? 'rounded-r-md' : '',
                         !link.url ? ' bg-gray-100 text-gray-700' : '',
                     ]"
                     v-html="link.label"
@@ -181,21 +174,24 @@
 import { computed, onMounted, ref } from "vue";
 import store from "../../store";
 import Spinner from "../../components/core/Spinner.vue";
-import { PRODUCTS_PER_PAGE } from "../../constants";
+import { USERS_PER_PAGE } from "../../constants";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import UserModal from "./UserModal.vue";
 
-const perPage = ref(PRODUCTS_PER_PAGE);
+const perPage = ref(USERS_PER_PAGE);
 const search = ref("");
-const products = computed(() => store.state.products);
+const users = computed(() => store.state.users);
 const sortField = ref("updated_at");
 const sortDirection = ref("desc");
-const product = ref({});
-const showProductModal = ref(false);
+
+const user = ref({});
+const showUserModal = ref(false);
+
 const emit = defineEmits(["clickEdit"]);
 
 onMounted(() => {
-    getProducts();
+    getUsers();
 });
 
 function getForPage(ev, link) {
@@ -203,11 +199,12 @@ function getForPage(ev, link) {
     if (!link.url || link.active) {
         return;
     }
-    getProducts(link.url);
+
+    getUsers(link.url);
 }
 
-function getProducts(url = null) {
-    store.dispatch("getProducts", {
+function getUsers(url = null) {
+    store.dispatch("getUsers", {
         url,
         search: search.value,
         per_page: perPage.value,
@@ -216,7 +213,7 @@ function getProducts(url = null) {
     });
 }
 
-function sortProducts(field) {
+function sortUsers(field) {
     if (field === sortField.value) {
         if (sortDirection.value === "desc") {
             sortDirection.value = "asc";
@@ -227,24 +224,25 @@ function sortProducts(field) {
         sortField.value = field;
         sortDirection.value = "asc";
     }
-    getProducts();
+
+    getUsers();
 }
 
 function showAddNewModal() {
-    showProductModal.value = true;
+    showUserModal.value = true;
 }
 
-function deleteProduct(product) {
-    if (!confirm(`Are you sure you want to delete the product?`)) {
+function deleteUser(user) {
+    if (!confirm(`Are you sure you want to delete the user?`)) {
         return;
     }
-    store.dispatch("deleteProduct", product.id).then((res) => {
+    store.dispatch("deleteUser", user.id).then((res) => {
         // TODO Show notification
-        store.dispatch("getProducts");
+        store.dispatch("getUsers");
     });
 }
 
-function editProduct(p) {
+function editUser(p) {
     emit("clickEdit", p);
 }
 </script>

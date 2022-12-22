@@ -28,11 +28,9 @@
                     <!-- Product Item -->
                     <template x-for="product of cartItems" :key="product.id">
                         <div x-data="productItem(product)">
-                            <div
-                                class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
-                                <a :href="product.href"
-                                   class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                                    <img :src="product.image" class="object-cover" alt=""/>
+                            <div class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
+                                <a :href="product.href" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                                    <img :src="product.image" class="object-cover" alt="" />
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
                                     <div class="flex justify-between mb-3">
@@ -44,25 +42,14 @@
                                     <div class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             Qty:
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                x-model="product.quantity"
-                                                @change="changeQuantity()"
-                                                class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16"
-                                            />
+                                            <input type="number" min="1" x-model="product.quantity" @change="changeQuantity()" class="ml-3 py-1 border-gray-200 focus:border-blue-600 focus:ring-blue-600 w-16" />
                                         </div>
-                                        <a
-                                            href="#"
-                                            @click.prevent="removeItemFromCart()"
-                                            class="text-purple-600 hover:text-purple-500"
-                                        >Remove</a
-                                        >
+                                        <a href="#" @click.prevent="removeItemFromCart()" class="text-blue-600 hover:text-blue-500">Remove</a>
                                     </div>
                                 </div>
                             </div>
                             <!--/ Product Item -->
-                            <hr class="my-5"/>
+                            <hr class="my-5" />
                         </div>
                     </template>
                     <!-- Product Item -->

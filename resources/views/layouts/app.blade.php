@@ -17,10 +17,10 @@
     </style>
 </head>
 
-<body>
+<body class="bg-white">
     @include('layouts.navigation')
 
-    <main class="pt-5 px-[64px] select-none">
+    <main class="py-6 px-[64px] select-none">
         {{ $slot }}
     </main>
 

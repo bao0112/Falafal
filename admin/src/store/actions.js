@@ -134,6 +134,10 @@ export function updateUser({ commit }, user) {
     return api.put(`/users/${user.id}`, user);
 }
 
+export function deleteUser({ commit }, id) {
+    return api.delete(`/users/${id}`);
+}
+
 export function getCustomers(
     { commit, state },
     { url = null, search = "", per_page, sort_field, sort_direction } = {},
