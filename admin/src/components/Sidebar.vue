@@ -24,16 +24,6 @@
             </span>
         </router-link>
         <router-link
-            :to="{ name: 'app.dashboard' }"
-            class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
-        >
-            <span class="w-5 mr-[20px] px-[12px] text-gray-500">
-                <!-- <HomeIcon class="w-5" /> -->
-                <i class="fa-solid fa-house"></i>
-            </span>
-            <span class="text-base"> Dashboard </span>
-        </router-link>
-        <router-link
             :to="{ name: 'app.products' }"
             class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
         >
@@ -72,16 +62,6 @@
                 <i class="fa-solid fa-users"></i>
             </span>
             <span class="text-base"> Customers </span>
-        </router-link>
-        <router-link
-            :to="{ name: 'reports.orders' }"
-            class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
-        >
-            <span class="w-5 mr-[20px] px-[12px] text-gray-500">
-                <!-- <ChartBarIcon class="w-5" /> -->
-                <i class="fa-solid fa-chart-simple"></i>
-            </span>
-            <span class="text-base"> Reports </span>
         </router-link>
     </div>
 </template>

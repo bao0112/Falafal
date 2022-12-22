@@ -9,7 +9,7 @@
                 <i class="fa-solid fa-bars"></i>
             </span>
         </button>
-        <Menu as="div" class="relative inline-block text-left">
+        <Menu as="div" class="relative inline-block text-left z-50">
             <MenuButton class="flex items-center">
                 <!-- <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-full w-8 mr-2" /> -->
 

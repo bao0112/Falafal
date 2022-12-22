@@ -71,13 +71,10 @@
                     </svg>
                     Add to Cart
                 </button>
-                <div class="mb-6" x-data="{expanded: false}">
-                    <div x-show="expanded" x-collapse.min.120px class="text-gray-500 wysiwyg-content">
+                <div class="mb-6">
+                    <div class="text-gray-500 wysiwyg-content">
                         {{ $product->description }}
                     </div>
-                    <p class="text-right">
-                        <a @click="expanded = !expanded" href="javascript:void(0)" class="text-blue-500 hover:text-blue-700" x-text="expanded ? 'Read Less' : 'Read More'"></a>
-                    </p>
                 </div>
             </div>
         </div>
