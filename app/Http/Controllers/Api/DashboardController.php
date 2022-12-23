@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    use ReportTrait;
+
     public function activeCustomers()
     {
         return Customer::where('status', CustomerStatus::Active->value)->count();

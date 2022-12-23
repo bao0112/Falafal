@@ -24,6 +24,16 @@
             </span>
         </router-link>
         <router-link
+            :to="{ name: 'app.dashboard' }"
+            class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
+        >
+            <span class="w-5 mr-[20px] px-[12px] text-gray-500">
+                <!-- <ViewListIcon class="w-5" /> -->
+                <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="text-base"> Dashboard </span>
+        </router-link>
+        <router-link
             :to="{ name: 'app.products' }"
             class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
         >

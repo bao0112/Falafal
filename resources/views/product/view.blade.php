@@ -34,7 +34,7 @@
                                 <img :src="image" alt="" class="w-auto mx-auto" />
                             </div>
                         </template>
-                        <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
+                        <!-- <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                             </svg>
@@ -43,15 +43,15 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                             </svg>
-                        </a>
+                        </a> -->
                     </div>
-                    <div class="flex">
+                    <!-- <div class="flex">
                         <template x-for="image in images">
                             <a @click.prevent="activeImage = image" class="cursor-pointer w-[80px] h-[80px] border border-gray-300 hover:border-blue-500 flex items-center justify-center" :class="{'border-blue-600': activeImage === image}">
                                 <img :src="image" alt="" class="w-auto max-auto max-h-full" />
                             </a>
                         </template>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="lg:col-span-2">

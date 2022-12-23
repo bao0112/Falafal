@@ -26,7 +26,7 @@ const routes = [
     {
         path: "/app",
         name: "app",
-        redirect: "/app/products",
+        redirect: "/app/dashboard",
         component: AppLayout,
         meta: {
             requiresAuth: true,
