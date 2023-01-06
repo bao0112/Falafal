@@ -20,7 +20,7 @@
                             autocomplete="email"
                             name="email"
                             id="email"
-                            class="block w-full h-10 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block w-full h-10 px-4 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:outline-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:outline-blue-500"
                             required=""
                             placeholder="Your email address"
                         />

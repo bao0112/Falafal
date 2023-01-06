@@ -2,7 +2,7 @@
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 select-none">
         <div class="max-w-md w-full space-y-8">
             <div>
-                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Đổi mật khẩu</h2>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Reset password</h2>
             </div>
             <form class="mt-8 space-y-6" action="#" method="POST">
                 <input type="hidden" name="remember" value="true" />
@@ -18,7 +18,7 @@
                             type="password"
                             name="password"
                             id="new-password"
-                            class="block w-full h-10 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block w-full h-10 px-4 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:outline-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:outline-blue-500"
                             required=""
                             placeholder="Enter your new password"
                         />
@@ -34,7 +34,7 @@
                             type="password"
                             name="password-repeat"
                             id="password-repeat"
-                            class="block w-full h-10 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block w-full h-10 px-4 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:outline-blue-500 focus:placeholder-transparent dark:placeholder-gray-300 dark:focus:ring-blue-500 dark:focus:outline-blue-500"
                             required=""
                             placeholder="Confirm your new password"
                         />
